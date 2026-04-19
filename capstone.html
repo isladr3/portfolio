@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CS-499 Capstone | Andres Alcantar</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Andres Alcantar</div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="capstone-hero">
+    <h1>CS‑499 Computer Science Capstone</h1>
+<p class="post-production-note">
+        <strong>Project Evolution:</strong> This project represents a full-stack refactoring of a legacy inventory system into the modern <strong>Equator</strong> mobile application. By addressing critical technical debt and security vulnerabilities, the evolution demonstrates mastery in cloud-integrated databases, algorithm optimization, and secure, modular architecture.
+    </p>
+</section>
+
+
+<!-- SECTION: OVERVIEW -->
+<section class="capstone-section">
+<h2>Project Technical Summary</h2>
+    <p>
+        The original iteration of this application was built as a local-only inventory tool using a 
+        standard SQLite implementation. While functional for basic tasks, the system contained 
+        significant "technical debt"—specifically in how it handled user data, scalability, and 
+        internal logic organization. This code review serves as the baseline for the 
+        <strong>Equator</strong> refactor, identifying the specific vulnerabilities and 
+        inefficiencies that required a transition to a modern, cloud-integrated architecture.
+    </p>
+</section>
+
+<section class="capstone-section">
+    <h2>Code Review: Strategic Assessment</h2>
+    <p>
+        The initial audit of the legacy system revealed significant "technical debt" and critical 
+        security vulnerabilities that informed the <strong>Equator</strong> refactor. Primary risks 
+        included <strong>O(n) linear search patterns</strong> in the Data Access Object (DAO) 
+        that threatened scalability, and "Destructive Migration" settings in the SQLite configuration 
+        that posed a high risk of total data loss during application updates.
+    </p>
+    <p>
+        From an architectural standpoint, the project suffered from tightly coupled UI and business logic 
+        within the Main Activity. To resolve this, I transitioned the system to a modular 
+        <strong>MVVM pattern</strong>. Furthermore, identifying unencrypted local backups and 
+        plain-text password storage highlighted the immediate need for <strong>Firebase Authentication</strong> 
+        to establish a security-first foundation for the cloud-integrated version of the app.
+    </p>
+
+ <div class="video-container" style="margin-top: 30px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000;">
+        <iframe 
+            src="https://www.youtube.com/embed/EOlng6eZBLw" 
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <p class="post-production-note" style="text-align: left;">
+        <strong>Professional Note:</strong> I used AI post-processing to enhance audio clarity and remove environmental distractions noted in previous peer reviews, ensuring the final deliverable meets industry standards for professional presentation.
+    </p>
+
+    <div class="outcome-alignment">
+        <strong>Outcome Alignment:</strong> 
+        <a href="#outcome-1">Mastery of <strong>Outcome 1 (Collaborative Environments)</strong></a> 
+        by applying strategies for providing technical feedback that supports organizational decision-making and project evolution.
+    </div>
+
+    <div class="outcome-alignment">
+        <strong>Outcome Alignment:</strong> 
+        <a href="#outcome-2">Mastery of <strong>Outcome 2 (Professional Communication)</strong></a> 
+        by delivering professional-quality visual and oral communication adapted to a technical audience through a structured code review.
+    </div>
+</section>
+
+
+<!-- SECTION: ENHANCEMENTS -->
+<section class="capstone-section">
+    <h2>Enhancements & Technical Proof</h2>
+
+<div class="project-card">
+    <h3>✔ Enhancement One: Software Engineering & MVVM Architecture</h3>
+    <p><strong>Initial State:</strong> The legacy application utilized a tightly coupled architecture where Activities managed UI logic, data persistence, and background threading simultaneously, leading to high "technical debt" and maintenance difficulty.</p>
+    <p><strong>Optimization:</strong> I refactored the system into a modular <strong>MVVM (Model-View-ViewModel)</strong> pattern. By implementing lifecycle-aware components and Kotlin Coroutines, I successfully decoupled business logic from the UI layer, ensuring a scalable and testable codebase.</p>
+</div>
+
+<div class="enhancement-sub-section">
+    <h3>Database Performance & Stress Testing</h3>
+    
+    <div class="comparison-container">
+        <div class="before-box">
+            <h4>Before: Unindexed Linear Search</h4>
+            <img src="assets/images/enhancement1abefore.png" alt="Legacy Stress Test (No Index)" onclick="enlargeImage(this)">
+            <p>Legacy search patterns required a full table scan of 200,000 items, leading to significant query latency as the database grew.</p>
+        </div>
+        
+        <div class="after-box">
+            <h4>After: B-Tree Indexed Search</h4>
+            <img src="assets/images/enhancement1aafter.png" alt="Enhanced Stress Test (Indexed)" onclick="enlargeImage(this)">
+            <p>Implemented B-Tree indexing on the name column, reducing search time from O(n) to O(log n) during high-volume stress testing.</p>
+        </div>
+    </div>
+
+<div class="outcome-alignment">
+    <strong>Outcome Alignment:</strong> 
+    <a href="#outcome-4">Mastery of <strong>Outcome 4 (Innovative Techniques)</strong></a> 
+    by using stress-testing tools to implement solutions that deliver industry-specific value and handle large-scale data.
+</div>
+
+<div class="enhancement-sub-section">
+    <h3>Empirical Performance Validation</h3>
+    
+    <div class="comparison-container">
+        <div class="before-box">
+            <h4>Before: Linear Search Results</h4>
+            <img src="assets/images/enhancement1bbefore.png" alt="Logcat showing 6ms search time" onclick="enlargeImage(this)">
+            <p>Logcat metrics show the legacy unindexed database requiring 6ms to locate a single record out of 200,000 entries.</p>
+        </div>
+        
+        <div class="after-box">
+            <h4>After: Indexed Search Results</h4>
+            <img src="assets/images/enhancement1bafter.png" alt="Logcat showing 0ms search time" onclick="enlargeImage(this)">
+            <p>After implementing B-Tree indexing, the same search operation consistently clocked at 0ms, demonstrating near-instant data retrieval.</p>
+        </div>
+    </div>
+
+<div class="outcome-alignment">
+    <strong>Outcome Alignment:</strong> 
+    <a href="#outcome-4">Mastery of <strong>Outcome 4 (Innovative Techniques)</strong></a> 
+    by using diagnostic skills and tools like Logcat to validate that implemented solutions accomplish performance goals.
+</div>
+
+<hr class="section-divider">
+
+    <div class="project-card">
+        <h3>✔ Enhancement Two: Algorithms and Data Structures</h3>
+        <p><strong>Initial State:</strong> Data retrieval relied on basic SQL linear scans O(n), and sorting was handled by standard database ordering, which lacked stability for complex inventory datasets.</p>
+        <p><strong>Optimization:</strong> I implemented custom <strong>Binary Search</strong> and <strong>Stable Merge Sort</strong> algorithms. This reduced search time complexity to O(log n) and ensured data integrity during complex sorting operations.</p>
+    </div>
+
+    <div class="enhancement-sub-section">
+    <h3>Data Integrity: Stable Merge Sort</h3>
+    
+    <div class="comparison-container">
+        <div class="before-box">
+            <h4>Before: Standard SQL Sorting</h4>
+            <img src="assets/images/enhancement2abefore.png" alt="Legacy SQL Order By" onclick="enlargeImage(this)">
+            <p>Relied on basic SQL sorting which does not guarantee stability, potentially shifting the relative order of identical items during re-sorts.</p>
+        </div>
+        
+        <div class="after-box">
+            <h4>After: Custom Merge Sort Implementation</h4>
+            
+            <img src="assets/images/enhancement2aafter1.png" alt="Merge Sort Recursive Logic" onclick="enlargeImage(this)" style="margin-bottom: 20px;">
+            
+            <img src="assets/images/enhancement2aafter2.png" alt="Stable Merging Comparison" onclick="enlargeImage(this)">
+            
+            <p>Developed a stable Merge Sort O(n log n). By implementing custom recursive splitting and stable comparison logic, I ensured consistent data ordering and integrity across complex inventory views.</p>
+        </div>
+    </div>
+
+<div class="outcome-alignment">
+    <strong>Outcome Alignment:</strong> 
+    <a href="#outcome-3">Mastery of <strong>Outcome 3 (Algorithmic Principles)</strong></a> 
+    by evaluating trade-offs between simple database queries and high-performance O(n log n) custom data structures.
+</div>
+
+<div class="enhancement-sub-section">
+    <h3>Search Optimization: O(n) to O(log n)</h3>
+    
+    <div class="comparison-container">
+        <div class="before-box">
+            <h4>Before: Linear SQL Queries</h4>
+            <img src="assets/images/enhancement2bbefore.png" alt="Legacy SQL DAO Query" onclick="enlargeImage(this)">
+            <p>The legacy system relied on basic SQLite queries that performed linear scans O(n). This approach resulted in higher CPU usage and increased latency as the inventory grew.</p>
+        </div>
+        
+        <div class="after-box">
+            <h4>After: Debounced Binary Search</h4>
+            
+            <img src="assets/images/enhancement2bafter1.png" alt="InventorySorter Header and Docs" onclick="enlargeImage(this)" style="margin-bottom: 20px;">
+            
+            <img src="assets/images/enhancement2bafter2.png" alt="SearchManager Kotlin Implementation" onclick="enlargeImage(this)">
+            
+            <p>Implemented a custom Binary Search algorithm coupled with a 300ms 'Debounce' mechanism in Kotlin. This ensured that search executions only occurred after the user finished typing, drastically reducing redundant database overhead.</p>
+        </div>
+    </div>
+
+    <div class="outcome-alignment">
+        <strong>Outcome Alignment:</strong> 
+        <a href="#outcome-3">Mastery of <strong>Outcome 3 (Algorithmic Principles)</strong></a> 
+        by evaluating trade-offs between simple database queries and high-performance custom data structures.
+    </div>
+</div>
+
+<div class="enhancement-sub-section">
+    <h3>Algorithmic Logic & Threading Refactor</h3>
+    
+    <div class="comparison-container">
+        <div class="before-box">
+            <h4>Before: Manual Threading & Coupled Logic</h4>
+            <img src="assets/images/enhancement2cbefore.png" alt="Legacy Manual Threading in MainActivity" onclick="enlargeImage(this)">
+            <p>In the legacy system, business logic and data persistence were tightly coupled within the UI Controller (MainActivity), using unmanaged manual threads that posed risks of memory leaks and race conditions.</p>
+        </div>
+        
+        <div class="after-box">
+            <h4>After: Optimized Binary Search Implementation</h4>
+            <img src="assets/images/enhancement2cafter.png" alt="Custom Binary Search Algorithm Implementation" onclick="enlargeImage(this)">
+            <p>Implemented a standalone, high-performance Binary Search algorithm. By decoupling the search logic from the UI and ensuring a sorted pre-condition, search efficiency was optimized to O(log n), providing a scalable solution for large datasets.</p>
+        </div>
+    </div>
+
+    <div class="outcome-alignment">
+        <strong>Outcome Alignment:</strong> 
+        <a href="#outcome-3">Mastery of <strong>Outcome 3 (Algorithmic Principles)</strong></a> 
+        by designing computing solutions that manage design choice trade-offs between architectural complexity and execution speed.
+    </div>
+</div>
+
+<hr class="section-divider">
+
+    <div class="project-card">
+        <h3>✔ Enhancement Three: Databases and Security</h3>
+        <p><strong>Initial State:</strong> The application used an unauthenticated, local-only SQLite database, posing a high risk of data loss and zero security for user information.</p>
+        <p><strong>Optimization:</strong> I migrated the storage layer to <strong>Cloud Firestore</strong> and integrated <strong>Firebase Authentication</strong>. This established a security-first foundation with real-time synchronization and encrypted user-specific data silos.</p>
+    </div>
+
+    <div class="enhancement-sub-section">
+    <h3>Cloud Migration: Local SQLite to Firebase Firestore</h3>
+    
+    <div class="comparison-container">
+        <div class="before-box">
+            <h4>Before: Local-Only SQLite (Room)</h4>
+            <img src="assets/images/enhancement3abefore.png" alt="Legacy AppDatabase SQLite Logic" onclick="enlargeImage(this)">
+            <p>The legacy storage layer was restricted to a local SQLite instance. This architecture lacked multi-device synchronization and posed a significant risk of total data loss during "Destructive Migrations."</p>
+        </div>
+        
+        <div class="after-box">
+            <h4>After: Secure Cloud Firestore Integration</h4>
+            <img src="assets/images/enhancement3aafter.png" alt="Enhanced FirestoreRepository Implementation" onclick="enlargeImage(this)">
+            <p>Migrated to a NoSQL Cloud Firestore architecture. I implemented a repository pattern that automatically scopes all data operations to the authenticated user's unique ID (UID), establishing a secure and scalable data silo.</p>
+        </div>
+    </div>
+
+    <div class="outcome-alignment">
+        <strong>Outcome Alignment:</strong> 
+        <a href="#outcome-5">Mastery of <strong>Outcome 5 (Security Mindset)</strong></a> 
+        by implementing a security-first foundation through managed authentication and cloud-integrated data protection.
+    </div>
+</div>
+
+<div class="enhancement-sub-section">
+    <h3>Architectural Security: Repository Pattern Refactor</h3>
+    
+    <div class="comparison-container">
+        <div class="before-box">
+            <h4>Before: Exposed DAO Logic</h4>
+            <img src="assets/images/enhancement3bbefore.png" alt="Legacy InventoryItemsDAO Interface" onclick="enlargeImage(this)">
+            <p>The legacy application relied on direct Data Access Object (DAO) calls. This lacked an abstraction layer, making it difficult to swap data sources or implement global security rules across the application.</p>
+        </div>
+        
+        <div class="after-box">
+            <h4>After: Centralized Inventory Repository</h4>
+            <img src="assets/images/enhancement3bafter.png" alt="Enhanced InventoryRepository Logic" onclick="enlargeImage(this)">
+            <p>Implemented a centralized <strong>Repository Pattern</strong>. This abstraction layer decoupled the UI from the database, allowing for a "single source of truth" where security checks and background execution (via Executors) are managed consistently.</p>
+        </div>
+    </div>
+
+    <div class="outcome-alignment">
+        <strong>Outcome Alignment:</strong> 
+        <a href="#outcome-5">Mastery of <strong>Outcome 5 (Security Mindset)</strong></a> 
+        by mitigating design flaws through an abstraction layer that ensures data privacy and consistent enforcement of access controls.
+    </div>
+</div>
+
+<div class="enhancement-sub-section">
+    <h3>Hybrid Data Modeling & Security</h3>
+    
+    <div class="comparison-container">
+        <div class="before-box">
+            <h4>Before: Simple Entity Model</h4>
+            <img src="assets/images/enhancement3cbefore.png" alt="Legacy InventoryItems Entity" onclick="enlargeImage(this)">
+            <p>The original data model was a basic POJO designed only for local Room/SQLite storage. It lacked indexing for search performance and had no concept of user ownership or cloud-identity mapping.</p>
+        </div>
+        
+        <div class="after-box">
+            <h4>After: Optimized & Secured Entity</h4>
+            <img src="assets/images/enhancement3cafter.png" alt="Enhanced InventoryItems with Indices and Firebase Tags" onclick="enlargeImage(this)">
+            <p>Refactored the entity to include a <strong>B-Tree Index</strong> for optimized local lookups. Introduced <code>@Exclude</code> tags to prevent ID collisions between local and cloud layers, and added a <code>userId</code> field to enforce strict data-owner separation.</p>
+        </div>
+    </div>
+
+    <div class="outcome-alignment">
+        <strong>Outcome Alignment:</strong> 
+        <a href="#outcome-5">Mastery of <strong>Outcome 5 (Security Mindset)</strong></a> 
+        by designing data structures that natively support access controls and mitigate design flaws through proper metadata management.
+    </div>
+</div>
+
+
+<div id="imageOverlay" class="overlay" onclick="closeImage()">
+    <span class="close-btn">&times;</span>
+    <img class="overlay-content" id="fullImage">
+    <div id="caption"></div>
+</div>
+</section>
+
+<!-- SECTION: REFLECTION -->
+<section class="capstone-section">
+    <h2>Reflection & Professional Mastery</h2>
+    <p>
+        The evolution of the <strong>Equator</strong> application represents my transition from 
+        functional prototyping to professional-grade engineering. By resolving technical debt and 
+        implementing industry-standard architectures, I have demonstrated a readiness to contribute 
+        to complex, scalable software environments.
+    </p>
+    
+<div class="outcome-alignment">
+        <strong>Additional Context:</strong> 
+        <a href="index.html#self-assessment">Professional Self-Assessment</a>
+    </div>
+
+    <div class="outcome-alignment">
+    <strong>Outcome Alignment:</strong> 
+    <a href="#outcome-2">Mastery of <strong>Outcome 2 (Professional Communication)</strong></a> 
+    by delivering a technically sound written reflection that synthesizes complex engineering concepts for a professional audience.
+</div>
+</section>
+
+<section id="outcomes" class="section outcomes-grid">
+    <h2>Academic Portfolio Outcomes</h2>
+    
+    <div class="outcome-item" id="outcome-1">
+        <strong>CS-499 Outcome 1: Collaborative Environments</strong>
+   <p>Employ strategies for building collaborative environments that enable diverse audiences to support organizational decision making in the field of computer science.</p></div>
+
+    <div class="outcome-item" id="outcome-2">
+        <strong>CS-499 Outcome 2: Professional Communication</strong>
+   <p>Design, develop, and deliver professional-quality oral, written, and visual communications that are coherent, technically sound, and appropriately adapted to specific audiences and contexts.</p> </div>
+
+    <div class="outcome-item" id="outcome-3">
+        <strong>CS-499 Outcome 3: Algorithmic Principles</strong>
+    <p>Design and evaluate computing solutions that solve a given problem using algorithmic principles and computer science practices and standards appropriate to its solution, while managing the trade-offs involved in design choices.</p></div>
+
+    <div class="outcome-item" id="outcome-4">
+        <strong>CS-499 Outcome 4: Innovative Techniques</strong>
+    <p>Demonstrate an ability to use well-founded and innovative techniques, skills, and tools in computing practices for the purpose of implementing computer solutions that deliver value and accomplish industry-specific goals.</p></div>
+
+    <div class="outcome-item" id="outcome-5">
+        <strong>CS-499 Outcome 5: Security Mindset</strong>
+     <p>Develop a security mindset that anticipates adversarial exploits in software architecture and designs to expose potential vulnerabilities, mitigate design flaws, and ensure privacy and enhanced security of data and resources.</p> </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="capstone-footer">
+    © 2026 Andres Alcantar | SNHU CS‑499 Capstone
+</footer>
+
+
+<script>
+        function enlargeImage(img) {
+            var overlay = document.getElementById("imageOverlay");
+            var fullImg = document.getElementById("fullImage");
+            var captionText = document.getElementById("caption");
+            
+            overlay.style.display = "flex";
+            fullImg.src = img.src;
+            captionText.innerHTML = img.alt;
+        }
+
+        function closeImage() {
+            document.getElementById("imageOverlay").style.display = "none";
+        }
+    </script>
+</body>
+</html>

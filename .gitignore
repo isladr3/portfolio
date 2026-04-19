@@ -1,0 +1,17 @@
+# OS Metadata
+.DS_Store
+Thumbs.db
+
+# IDE / Editor folders
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary/Backup files
+*.log
+*.tmp
+.bak
+
+# If you used any node modules locally
+node_modules/

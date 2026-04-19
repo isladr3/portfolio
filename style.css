@@ -1,0 +1,482 @@
+/* ================================
+   1. GLOBAL SETTINGS & VARIABLES
+   ================================ */
+:root {
+    --navy: #0C2647;
+    --gold: #D4A72C;
+    --text-dark: #111111;
+    --text-gray: #444444;
+    --border-gray: #eaeaea;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box; /* Essential for padding/borders */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.section {
+    max-width: 900px;
+    margin: 100px auto; /* Increased from 80px to 100px */
+    padding: 0 20px;
+}
+
+/* ================================
+   2. NAVIGATION
+   ================================ */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 90px; 
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.4s ease;
+    background: #ffffff; 
+}
+
+nav .logo {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base Button Style */
+nav a {
+    color: var(--navy);
+    padding: 8px 18px; /* Slightly wider for better proportion */
+    border: 1px solid var(--navy);
+    border-radius: 4px;
+    text-decoration: none;
+    background: transparent;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* Hover Effect: Navy fill with White text */
+nav a:hover {
+    background-color: var(--navy);
+    color: #ffffff !important;
+    border-color: var(--navy);
+}
+
+/* SCROLLED STATE */
+nav.scrolled {
+    background: var(--navy);
+    height: 70px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+nav.scrolled .logo,
+nav.scrolled a {
+    color: #ffffff !important;
+    border-color: #ffffff;
+}
+
+nav.scrolled a:hover {
+    background-color: var(--gold);
+    color: var(--navy) !important;
+    border-color: var(--gold);
+}
+
+/* ================================
+   3. HERO SECTION
+   ================================ */
+.hero {
+    padding-top: 200px;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px; /* Increased from 40px to 60px */
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-text {
+    flex: 1;
+    text-align: left;
+}
+
+.hero-text h1 {
+    font-size: 52px;
+    margin-bottom: 8px;
+    color: var(--navy);
+}
+
+.hero-text p {
+    font-size: 18px;
+    color: var(--text-gray);
+}
+
+.headshot {
+    width: 330px;
+    height: 430px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* ================================
+   4. COMPONENTS (Cards, Buttons, Badges)
+   ================================ */
+.project-card {
+    border: 1px solid var(--border-gray);
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    background: #fff;
+}
+
+.project-card:hover {
+    border-color: var(--navy);
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: var(--navy);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--gold);
+}
+
+.skill-badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 14px;
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    background: #f9f9f9;
+    font-weight: 500;
+    white-space: nowrap;
+    margin-bottom: 10px; /* Prevents badges from touching when they wrap */
+}
+
+.skill-badge:hover {
+    border-color: var(--navy);
+    background: rgba(21, 58, 91, 0.08);
+}
+
+.floating-next {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--navy);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    opacity: 0.85;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.floating-next:hover {
+    background: var(--gold);
+    opacity: 1;
+}
+
+/* ================================
+   5. CAPSTONE PAGE STYLING
+   ================================ */
+.capstone-hero {
+    padding-top: 160px;
+    padding-bottom: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.capstone-hero h1 {
+    font-size: 44px;
+    color: var(--navy);
+}
+
+.capstone-section {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.capstone-section h2 {
+    font-size: 32px;
+    color: var(--navy);
+    border-left: 4px solid var(--gold);
+    padding-left: 12px;
+}
+
+.capstone-section ul {
+    margin: 10px 0 0 20px;
+    color: var(--text-gray);
+}
+
+/* ================================
+   6. UTILITIES & VIDEO
+   ================================ */
+.hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#projects.section {
+    margin-bottom: 110px;
+}
+
+/* Updated Video Container for MP4 or YouTube */
+.video-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto; /* Changed from '40px 0' to '40px auto' */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    background: #000;
+    position: relative;
+}
+
+/* This handles the direct MP4 file */
+.portfolio-video {
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+/* This handles the YouTube fallback if you go back to it */
+.video-container iframe {
+    width: 100%;
+    height: 506px; /* Maintains 16:9 ratio for 900px width */
+    border: none;
+}
+
+.capstone-footer {
+    text-align: center;
+    padding: 60px 0;
+    margin-top: 80px;
+    border-top: 1px solid var(--border-gray);
+    color: #666666;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+}
+
+#outcomes {
+    margin-top: 120px; /* Space above the whole section */
+    padding-top: 60px;
+    border-top: 1px solid var(--border-gray);
+}
+
+#outcomes h2 {
+    margin-bottom: 50px; /* Spreads space between title and first outcome */
+    font-size: 32px;
+}
+
+.outcome-item {
+    margin-bottom: 40px; /* Spreads space between each individual outcome */
+    padding-left: 20px;
+    border-left: 3px solid var(--gold);
+}
+
+.outcome-item strong {
+    display: block;
+    color: var(--navy);
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.capstone-footer {
+    text-align: center;
+    padding: 60px 0;
+    margin-top: 80px;
+    border-top: 1px solid var(--border-gray);
+    color: #666666;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+}
+
+.post-production-note {
+    text-align: left;
+    max-width: 800px;
+    margin: 40px auto; /* Centers the block horizontally */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-left: 4px solid #555;
+    border-radius: 4px;
+    font-style: italic;
+    font-size: 0.95em;
+    color: #444;
+    line-height: 1.6;
+    overflow-wrap: break-word; /* Prevents text overflow on small screens */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.post-production-note a {
+    color: #004b8d;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Container for the comparison pair */
+.comparison-container {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Allows stacking on mobile */
+}
+
+/* Individual boxes for Before and After */
+.before-box, .after-box {
+    flex: 1;
+    min-width: 300px; /* Prevents them from getting too skinny */
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+/* --- Updated Comparison Images --- */
+.comparison-container img {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #333;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* ADDED: Makes it look like a button */
+    cursor: pointer; 
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* ADDED: Explicit hover state */
+.comparison-container img:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+    border-color: #007bff; /* Blue border on hover to show interaction */
+}
+
+/* Style for the Outcome text below the images */
+.outcome-alignment {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #eef6ff;
+    border-left: 5px solid #007bff;
+    font-style: italic;
+}
+
+/* The Overlay (background) */
+.overlay {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.9); 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* The actual enlarged image */
+.overlay-content {
+    max-width: 90%;
+    max-height: 80%;
+    border: 3px solid white;
+    box-shadow: 0px 0px 20px rgba(255,255,255,0.5);
+}
+
+/* The Close Button */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#caption {
+    margin-top: 15px;
+    color: #ccc;
+    font-size: 1.2rem;
+}
+
+/* ================================
+   7. RESPONSIVE MEDIA QUERIES
+   ================================ */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 38px;
+    }
+
+    .headshot {
+        width: 200px;
+        height: auto;
+    }
+
+    nav {
+        padding: 10px 20px;
+    }
+    
+    /* Only keep this if you are using YouTube; delete if using MP4 */
+    .video-container iframe {
+        height: 250px; 
+    }
+}
